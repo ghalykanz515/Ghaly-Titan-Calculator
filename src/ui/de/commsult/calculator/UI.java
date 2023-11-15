@@ -11,6 +11,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 import javax.swing.UIManager;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 
 public class UI {
 
@@ -48,7 +50,6 @@ public class UI {
         frmCalculator.setTitle("Calculator");
         frmCalculator.setBounds(100, 100, 465, 570);
         frmCalculator.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frmCalculator.getContentPane().setLayout(null);
 
         JToggleButton dropDown = new JToggleButton("Drop");
         dropDown.addActionListener(new ActionListener() {
@@ -60,17 +61,11 @@ public class UI {
                 }
             }
         });
-        dropDown.setBounds(10, 159, 431, 65);
-        frmCalculator.getContentPane().add(dropDown);
 
         textField = new JTextField();
-        textField.setBounds(10, 11, 431, 137);
-        frmCalculator.getContentPane().add(textField);
         textField.setColumns(10);
 
         panel = new JPanel();
-        panel.setBounds(10, 232, 431, 293);
-        frmCalculator.getContentPane().add(panel);
         panel.setLayout(null);
         panel.setVisible(true);
               		
@@ -153,6 +148,29 @@ public class UI {
         equals.setFont(new Font("Tahoma", Font.BOLD, 20));
         equals.setBounds(331, 228, 100, 65);
         panel.add(equals);
+        GroupLayout groupLayout = new GroupLayout(frmCalculator.getContentPane());
+        groupLayout.setHorizontalGroup(
+        	groupLayout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(groupLayout.createSequentialGroup()
+        			.addGap(10)
+        			.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+        				.addComponent(textField, GroupLayout.DEFAULT_SIZE, 431, Short.MAX_VALUE)
+        				.addComponent(dropDown, GroupLayout.PREFERRED_SIZE, 431, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(panel, GroupLayout.PREFERRED_SIZE, 431, GroupLayout.PREFERRED_SIZE))
+        			.addGap(10))
+        );
+        groupLayout.setVerticalGroup(
+        	groupLayout.createParallelGroup(Alignment.LEADING)
+        		.addGroup(groupLayout.createSequentialGroup()
+        			.addGap(11)
+        			.addComponent(textField, GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
+        			.addGap(11)
+        			.addComponent(dropDown, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE)
+        			.addGap(8)
+        			.addComponent(panel, GroupLayout.PREFERRED_SIZE, 293, GroupLayout.PREFERRED_SIZE)
+        			.addGap(8))
+        );
+        frmCalculator.getContentPane().setLayout(groupLayout);
         equals.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Perform calculation here
