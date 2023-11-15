@@ -4,7 +4,6 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -50,7 +49,8 @@ public class UI {
         frmCalculator.setTitle("Calculator");
         frmCalculator.setBounds(100, 100, 465, 570);
         frmCalculator.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        
+        //This button serves as the function to collaps the Calculator Buttons
         JToggleButton dropDown = new JToggleButton("Drop");
         dropDown.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -62,9 +62,11 @@ public class UI {
             }
         });
 
+        //TextField is where the Results and Numbers are going to be
         textField = new JTextField();
         textField.setColumns(10);
 
+        //Panel Contains all the buttons to make the Calculator
         panel = new JPanel();
         panel.setLayout(null);
         panel.setVisible(true);
@@ -144,6 +146,8 @@ public class UI {
   		Dot.setBounds(221, 228, 100, 65);
   		panel.add(Dot);
         
+  		
+  		//The Equals Button also serves as a function to Collapse the Buttons
   		JButton equals = new JButton("=");
         equals.setFont(new Font("Tahoma", Font.BOLD, 20));
         equals.setBounds(331, 228, 100, 65);
@@ -155,7 +159,7 @@ public class UI {
         			.addGap(10)
         			.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
         				.addComponent(textField, GroupLayout.DEFAULT_SIZE, 431, Short.MAX_VALUE)
-        				.addComponent(dropDown, GroupLayout.PREFERRED_SIZE, 431, GroupLayout.PREFERRED_SIZE)
+        				.addComponent(dropDown, GroupLayout.DEFAULT_SIZE, 431, Short.MAX_VALUE)
         				.addComponent(panel, GroupLayout.PREFERRED_SIZE, 431, GroupLayout.PREFERRED_SIZE))
         			.addGap(10))
         );
