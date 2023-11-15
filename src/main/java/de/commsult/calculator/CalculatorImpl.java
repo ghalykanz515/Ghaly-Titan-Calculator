@@ -1,8 +1,10 @@
 package de.commsult.calculator;
-import java.util.*;
+
+import java.util.Stack;
 
 public class CalculatorImpl implements Calculator {
 
+	@Override
 	public double calculate(String formula) {
         String[] elements = formula.split("\\s+");
         Stack<Double> numbers = new Stack<>();
@@ -25,7 +27,7 @@ public class CalculatorImpl implements Calculator {
                 numbers.push(Double.parseDouble(element));
             }
         }
-
+        
         while (!operators.isEmpty()) {
             applyOperator(numbers, operators.pop());
         }
@@ -33,12 +35,12 @@ public class CalculatorImpl implements Calculator {
         return numbers.pop();
     }
 
-    private boolean isOperator(String token) {
+    private static boolean isOperator(String token) {
         return token.equals("+") || token.equals("-") || token.equals("*") || token.equals("/");
     }
 
-    private boolean hasPrecedence(String op1, String op2) {
-        return (op1.equals("*") || op1.equals("/")) || (op2.equals("+") || op2.equals("-"));
+    private static boolean hasPrecedence(String op1, String op2) {
+        return (op1.equals("*") || op1.equals("/")) && (op2.equals("+") || op2.equals("-"));
     }
 
     private static void applyOperator(Stack<Double> numbers, String operator) {
@@ -59,35 +61,4 @@ public class CalculatorImpl implements Calculator {
                 break;
         }
     }
-    
-	/* @Override
-	public double calculate(String formula) {
-        String[] elements = formula.split("\\s+");
-		
-		double result = Double.parseDouble(elements[0]);
-		
-		for(int i = 1; i < elements.length; i += 2) 
-		{
-			String operator = elements[i];
-			double operand = Double.parseDouble(elements[i + 1]);
-			
-			switch(operator) {
-			case "+":
-				result += operand;
-				break;
-				
-			case "-":
-				result -= operand;
-				break;
-				
-			case "*":
-				result *= operand;
-				
-			case "/":
-				result /= operand;
-			}
-		}
-		
-		return 0; 
-	} */
 }
