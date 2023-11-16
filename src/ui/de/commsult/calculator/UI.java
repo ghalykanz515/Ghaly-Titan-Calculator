@@ -59,13 +59,15 @@ public class UI {
 
         
         //This button serves as the function to collapse the Calculator Buttons
-        JToggleButton dropDown = new JToggleButton("Drop");
+        JToggleButton dropDown = new JToggleButton("Collapse");
         dropDown.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (dropDown.isSelected()) {
                     panel.setVisible(false);
+                    dropDown.setText("Expand");  
                 } else {
                     panel.setVisible(true);
+                    dropDown.setText("Collapse"); 
                 }
             }
         });
@@ -182,18 +184,42 @@ public class UI {
   		panel.add(Number9);
   		
   		JButton Increment = new JButton("+");
+  		Increment.addActionListener(new ActionListener() {
+  			public void actionPerformed(ActionEvent e) {
+  				String number=textField.getText()+Increment.getText();
+  				textField.setText(number);
+  			}
+  		});
   		Increment.setBounds(330, 228, 100, 65);
   		panel.add(Increment);
   		
   		JButton Subtract = new JButton("-");
+  		Subtract.addActionListener(new ActionListener() {
+  			public void actionPerformed(ActionEvent e) {
+  				String number=textField.getText()+Subtract.getText();
+  				textField.setText(number);
+  			}
+  		});
   		Subtract.setBounds(330, 152, 100, 65);
   		panel.add(Subtract);
   		
   		JButton Divide = new JButton("%");
+  		Divide.addActionListener(new ActionListener() {
+  			public void actionPerformed(ActionEvent e) {
+  				String number=textField.getText()+Divide.getText();
+  				textField.setText(number);
+  			}
+  		});
   		Divide.setBounds(330, 0, 100, 65);
   		panel.add(Divide);
   		
   		JButton Times = new JButton("X");
+  		Times.addActionListener(new ActionListener() {
+  			public void actionPerformed(ActionEvent e) {
+  				String number=textField.getText()+Times.getText();
+  				textField.setText(number);
+  			}
+  		});
   		Times.setBounds(331, 76, 100, 65);
   		panel.add(Times);;
   		
@@ -202,6 +228,12 @@ public class UI {
   		panel.add(NegativePositive);
       		
   		JButton Dot = new JButton(".");
+  		Dot.addActionListener(new ActionListener() {
+  			public void actionPerformed(ActionEvent e) {
+  				String number=textField.getText()+Dot.getText();
+  				textField.setText(number);
+  			}
+  		});
   		Dot.setBounds(221, 304, 100, 65);
   		panel.add(Dot);
         
@@ -210,6 +242,11 @@ public class UI {
         panel.add(Delete);
         
         JButton CE = new JButton("CE");
+        CE.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		textField.setText(null);
+        	}
+        });
         CE.setBounds(111, 0, 100, 65);
         panel.add(CE);
         
@@ -229,6 +266,8 @@ public class UI {
                 panel.setVisible(false);
                 // Update the state of the dropdown button
                 dropDown.setSelected(false);
+                // Renamed Button to Expand
+                dropDown.setText("Expand"); 
             }
         });
                    
