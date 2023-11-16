@@ -12,10 +12,10 @@ import javax.swing.JToggleButton;
 import javax.swing.UIManager;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
+
+
 
 public class UI {
 
@@ -54,9 +54,12 @@ public class UI {
         frmCalculator.setBounds(100, 100, 465, 585);
         frmCalculator.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        //This button serves as the function to collaps the Calculator Buttons
+        
+
+
+        
+        //This button serves as the function to collapse the Calculator Buttons
         JToggleButton dropDown = new JToggleButton("Drop");
-        dropDown.setFont(new Font("Tahoma", Font.BOLD, 20));
         dropDown.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (dropDown.isSelected()) {
@@ -78,6 +81,16 @@ public class UI {
         panel.setLayout(null);
         panel.setVisible(true);
   		
+        JButton Number0 = new JButton("0");
+  		Number0.addActionListener(new ActionListener() {
+  			public void actionPerformed(ActionEvent e) {
+  				String number=textField.getText()+Number0.getText();
+  				textField.setText(number);
+  			}
+  		});
+  		Number0.setBounds(111, 304, 100, 65);
+  		panel.add(Number0);
+        
   		JButton Number1 = new JButton("1");
   		Number1.addActionListener(new ActionListener() {
   			public void actionPerformed(ActionEvent e) {
@@ -85,18 +98,6 @@ public class UI {
   				textField.setText(number);
   			}
   		});
-  		
-  		JButton Number0 = new JButton("0");
-  		Number0.addActionListener(new ActionListener() {
-  			public void actionPerformed(ActionEvent e) {
-  				String number=textField.getText()+Number0.getText();
-  				textField.setText(number);
-  			}
-  		});
-  		Number0.setFont(new Font("Tahoma", Font.BOLD, 20));
-  		Number0.setBounds(111, 304, 100, 65);
-  		panel.add(Number0);
-  		Number1.setFont(new Font("Tahoma", Font.BOLD, 20));
   		Number1.setBounds(0, 228, 100, 65);
   		panel.add(Number1);
   		
@@ -107,7 +108,6 @@ public class UI {
   				textField.setText(number);
   			}
   		});
-  		Number2.setFont(new Font("Tahoma", Font.BOLD, 20));
   		Number2.setBounds(110, 228, 100, 65);
   		panel.add(Number2);
   		
@@ -118,7 +118,6 @@ public class UI {
   				textField.setText(number);
   			}
   		});
-  		Number3.setFont(new Font("Tahoma", Font.BOLD, 20));
   		Number3.setBounds(220, 228, 100, 65);
   		panel.add(Number3);
   		
@@ -129,7 +128,6 @@ public class UI {
   				textField.setText(number);
   			}
   		});
-  		Number4.setFont(new Font("Tahoma", Font.BOLD, 20));
   		Number4.setBounds(0, 152, 100, 65);
   		panel.add(Number4);
   		
@@ -140,7 +138,6 @@ public class UI {
   				textField.setText(number);
   			}
   		});
-  		Number5.setFont(new Font("Tahoma", Font.BOLD, 20));
   		Number5.setBounds(111, 152, 100, 65);
   		panel.add(Number5);
   		
@@ -151,7 +148,6 @@ public class UI {
   				textField.setText(number);
   			}
   		});
-  		Number6.setFont(new Font("Tahoma", Font.BOLD, 20));
   		Number6.setBounds(221, 152, 100, 65);
   		panel.add(Number6);
   		
@@ -162,7 +158,6 @@ public class UI {
   				textField.setText(number);
   			}
   		});
-  		Number7.setFont(new Font("Tahoma", Font.BOLD, 20));
   		Number7.setBounds(0, 76, 100, 65);
   		panel.add(Number7);
   		
@@ -173,7 +168,6 @@ public class UI {
   				textField.setText(number);
   			}
   		});
-  		Number8.setFont(new Font("Tahoma", Font.BOLD, 20));
   		Number8.setBounds(110, 76, 100, 65);
   		panel.add(Number8);
   		
@@ -184,88 +178,49 @@ public class UI {
   				textField.setText(number);
   			}
   		});
-  		Number9.setFont(new Font("Tahoma", Font.BOLD, 20));
   		Number9.setBounds(220, 76, 100, 65);
   		panel.add(Number9);
   		
   		JButton Increment = new JButton("+");
-  		Increment.setFont(new Font("Tahoma", Font.BOLD, 20));
   		Increment.setBounds(330, 228, 100, 65);
   		panel.add(Increment);
   		
   		JButton Subtract = new JButton("-");
-  		Subtract.setFont(new Font("Tahoma", Font.BOLD, 20));
   		Subtract.setBounds(330, 152, 100, 65);
   		panel.add(Subtract);
   		
   		JButton Divide = new JButton("%");
-  		Divide.setFont(new Font("Tahoma", Font.BOLD, 20));
   		Divide.setBounds(330, 0, 100, 65);
   		panel.add(Divide);
   		
   		JButton Times = new JButton("X");
-  		Times.setFont(new Font("Tahoma", Font.BOLD, 20));
   		Times.setBounds(331, 76, 100, 65);
   		panel.add(Times);;
   		
   		JButton NegativePositive = new JButton("-/+");
-  		NegativePositive.setFont(new Font("Tahoma", Font.BOLD, 20));
   		NegativePositive.setBounds(1, 304, 100, 65);
   		panel.add(NegativePositive);
       		
   		JButton Dot = new JButton(".");
-  		Dot.setFont(new Font("Tahoma", Font.BOLD, 20));
   		Dot.setBounds(221, 304, 100, 65);
   		panel.add(Dot);
         
-  		
-  		//The Equals Button also serves as a function to Collapse the Buttons
-  		JButton equals = new JButton("=");
-        equals.setFont(new Font("Tahoma", Font.BOLD, 20));
-        equals.setBounds(331, 304, 100, 65);
-        panel.add(equals);
-        GroupLayout groupLayout = new GroupLayout(frmCalculator.getContentPane());
-        groupLayout.setHorizontalGroup(
-        	groupLayout.createParallelGroup(Alignment.LEADING)
-        		.addGroup(groupLayout.createSequentialGroup()
-        			.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-        				.addGroup(groupLayout.createSequentialGroup()
-        					.addContainerGap()
-        					.addComponent(dropDown, GroupLayout.PREFERRED_SIZE, 431, GroupLayout.PREFERRED_SIZE))
-        				.addGroup(groupLayout.createSequentialGroup()
-        					.addGap(10)
-        					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-        						.addComponent(textField, GroupLayout.PREFERRED_SIZE, 431, GroupLayout.PREFERRED_SIZE)
-        						.addComponent(panel, GroupLayout.PREFERRED_SIZE, 431, GroupLayout.PREFERRED_SIZE))))
-        			.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        groupLayout.setVerticalGroup(
-        	groupLayout.createParallelGroup(Alignment.LEADING)
-        		.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-        			.addContainerGap()
-        			.addComponent(textField, GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
-        			.addPreferredGap(ComponentPlacement.RELATED)
-        			.addComponent(dropDown, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE)
-        			.addPreferredGap(ComponentPlacement.RELATED)
-        			.addComponent(panel, GroupLayout.PREFERRED_SIZE, 366, GroupLayout.PREFERRED_SIZE)
-        			.addGap(8))
-        );
-        
-        JButton Delete = new JButton("Delete");
-        Delete.setFont(new Font("Tahoma", Font.BOLD, 20));
+  		JButton Delete = new JButton("<");
         Delete.setBounds(0, 0, 100, 65);
         panel.add(Delete);
         
         JButton CE = new JButton("CE");
-        CE.setFont(new Font("Tahoma", Font.BOLD, 20));
         CE.setBounds(111, 0, 100, 65);
         panel.add(CE);
         
         JButton CC = new JButton("CC");
-        CC.setFont(new Font("Tahoma", Font.BOLD, 20));
         CC.setBounds(220, 0, 100, 65);
         panel.add(CC);
-        frmCalculator.getContentPane().setLayout(groupLayout);
+          		
+  		//The Equals Button also serves as a function to Collapse the Buttons
+  		JButton equals = new JButton("=");
+        equals.setBounds(331, 304, 100, 65);
+        panel.add(equals);
         equals.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Perform calculation here
@@ -276,5 +231,68 @@ public class UI {
                 dropDown.setSelected(false);
             }
         });
+                   
+                
+        //This Code sets the layout of the Calculator
+        GroupLayout groupLayout = new GroupLayout(frmCalculator.getContentPane());
+        groupLayout.setHorizontalGroup(
+        	groupLayout.createParallelGroup(Alignment.TRAILING)
+        		.addGroup(groupLayout.createSequentialGroup()
+        			.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+        				.addGroup(groupLayout.createSequentialGroup()
+        					.addContainerGap()
+        					.addComponent(dropDown, GroupLayout.DEFAULT_SIZE, 431, Short.MAX_VALUE))
+        				.addGroup(groupLayout.createSequentialGroup()
+        					.addGap(10)
+        					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+        						.addComponent(textField, GroupLayout.PREFERRED_SIZE, 431, GroupLayout.PREFERRED_SIZE)
+        						.addComponent(panel, GroupLayout.PREFERRED_SIZE, 431, GroupLayout.PREFERRED_SIZE))))
+        			.addContainerGap())
+        );
+        groupLayout.setVerticalGroup(
+        	groupLayout.createParallelGroup(Alignment.TRAILING)
+        		.addGroup(groupLayout.createSequentialGroup()
+        			.addContainerGap()
+        			.addComponent(textField, GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addComponent(dropDown, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE)
+        			.addPreferredGap(ComponentPlacement.RELATED)
+        			.addComponent(panel, GroupLayout.PREFERRED_SIZE, 366, GroupLayout.PREFERRED_SIZE)
+        			.addGap(8))
+        );
+        frmCalculator.getContentPane().setLayout(groupLayout);
+        
+        
+
+        //This is a Loader for Custom Fonts
+        try {
+            Font customFont = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("PublicPixel.ttf")).deriveFont(20f);
+
+            // Set the font for specific components
+            dropDown.setFont(customFont);
+            textField.setFont(customFont);
+            Number0.setFont(customFont);
+            Number1.setFont(customFont);
+            Number2.setFont(customFont);
+            Number3.setFont(customFont);
+            Number4.setFont(customFont);
+            Number5.setFont(customFont);
+            Number6.setFont(customFont);
+            Number7.setFont(customFont);
+            Number8.setFont(customFont);
+            Number9.setFont(customFont);
+            Increment.setFont(customFont);
+            Subtract.setFont(customFont);
+            Divide.setFont(customFont);
+            Times.setFont(customFont);
+            NegativePositive.setFont(customFont);
+            Dot.setFont(customFont);
+            Delete.setFont(customFont);
+            CE.setFont(customFont);
+            CC.setFont(customFont);
+            equals.setFont(customFont);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
