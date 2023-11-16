@@ -55,9 +55,6 @@ public class UI {
         frmCalculator.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         
-
-
-        
         //This button serves as the function to collapse the Calculator Buttons
         JToggleButton dropDown = new JToggleButton("Collapse");
         dropDown.addActionListener(new ActionListener() {
@@ -72,12 +69,14 @@ public class UI {
             }
         });
 
+        
         //TextField is where the Results and Numbers are going to be
         textField = new JTextField();
         textField.setFont(new Font("Tahoma", Font.BOLD, 20));
         textField.setHorizontalAlignment(SwingConstants.CENTER);
         textField.setColumns(10);
 
+        
         //Panel Contains all the buttons to make the Calculator
         panel = new JPanel();
         panel.setLayout(null);
@@ -238,6 +237,18 @@ public class UI {
   		panel.add(Dot);
         
   		JButton Delete = new JButton("<");
+  		Delete.addActionListener(new ActionListener() {
+  			public void actionPerformed(ActionEvent arg0) {
+  				String Delete=(null);
+  				if (textField.getText().length()>0) 
+  					{
+  					StringBuilder str=new StringBuilder(textField.getText());
+  					str.deleteCharAt(textField.getText().length()-1);
+  					Delete=str.toString();
+  					textField.setText(Delete);
+  					}		 			
+  				}
+  			});
         Delete.setBounds(0, 0, 100, 65);
         panel.add(Delete);
         
