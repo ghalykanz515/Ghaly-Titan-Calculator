@@ -4,15 +4,23 @@ import java.util.Stack;
 
 public class CalculatorImpl implements Calculator {
 
-    @Override
+	@Override
     public double calculate(String formula) {
         Stack<Double> numberStack = new Stack<>();
         Stack<Character> operatorStack = new Stack<>();
+        StringBuilder numBuilder = new StringBuilder();
+        boolean wasToken = true;
 
         for (int i = 0; i < formula.length(); i++) {
             char c = formula.charAt(i);
-            if (Character.isDigit(c) || c == '.') {
-                StringBuilder numBuilder = new StringBuilder();
+
+            if (c ==  ' ') {
+                continue;
+            }
+
+            if (c == '-' && wasToken) {
+                numBuilder.append(c);
+            } else if (Character.isDigit(c) || c == '.') {
                 while (i < formula.length() && (Character.isDigit(formula.charAt(i)) || formula.charAt(i) == '.')) {
                     numBuilder.append(formula.charAt(i));
                     i++;
@@ -20,19 +28,21 @@ public class CalculatorImpl implements Calculator {
                 i--;
                 double num = Double.parseDouble(numBuilder.toString());
                 numberStack.push(num);
+                numBuilder.setLength(0);
+            } else if (isOperator(c)) {
+                while (!operatorStack.isEmpty() && precedence(operatorStack.peek()) >= precedence(c)) {
+                    performOperation(numberStack, operatorStack);
+                }
+                operatorStack.push(c);
             } else if (c == '(') {
                 operatorStack.push(c);
             } else if (c == ')') {
                 while (!operatorStack.isEmpty() && operatorStack.peek() != '(') {
                     performOperation(numberStack, operatorStack);
                 }
-                operatorStack.pop(); // Pop the '('
-            } else if (isOperator(c)) {
-                while (!operatorStack.isEmpty() && precedence(operatorStack.peek()) >= precedence(c)) {
-                    performOperation(numberStack, operatorStack);
-                }
-                operatorStack.push(c);
+                operatorStack.pop();
             }
+            wasToken = isOperator(c) || c == '(';
         }
 
         while (!operatorStack.isEmpty()) {
@@ -59,6 +69,9 @@ public class CalculatorImpl implements Calculator {
             case '*':
                 return operand1 * operand2;
             case '/':
+                if (operand2 == 0) {
+                    throw new ArithmeticException("Division by zero");
+                }
                 return operand1 / operand2;
             default:
                 throw new IllegalArgumentException("Invalid operator: " + operator);
@@ -75,6 +88,6 @@ public class CalculatorImpl implements Calculator {
         } else if (operator == '*' || operator == '/') {
             return 2;
         }
-        return 0; // Default precedence for non-operators
+        return 0;
     }
 }
