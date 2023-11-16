@@ -4,61 +4,77 @@ import java.util.Stack;
 
 public class CalculatorImpl implements Calculator {
 
-	@Override
-	public double calculate(String formula) {
-        String[] elements = formula.split("\\s+");
-        Stack<Double> numbers = new Stack<>();
-        Stack<String> operators = new Stack<>();
+    @Override
+    public double calculate(String formula) {
+        Stack<Double> numberStack = new Stack<>();
+        Stack<Character> operatorStack = new Stack<>();
 
-        for (String element : elements) {
-            if (element.equals("(")) {
-                operators.push(element);
-            } else if (element.equals(")")) {
-                while (!operators.isEmpty() && !operators.peek().equals("(")) {
-                    applyOperator(numbers, operators.pop());
+        for (int i = 0; i < formula.length(); i++) {
+            char c = formula.charAt(i);
+            if (Character.isDigit(c) || c == '.') {
+                StringBuilder numBuilder = new StringBuilder();
+                while (i < formula.length() && (Character.isDigit(formula.charAt(i)) || formula.charAt(i) == '.')) {
+                    numBuilder.append(formula.charAt(i));
+                    i++;
                 }
-                operators.pop();
-            } else if (isOperator(element)) {
-                while (!operators.isEmpty() && hasPrecedence(element, operators.peek())) {
-                    applyOperator(numbers, operators.pop());
+                i--;
+                double num = Double.parseDouble(numBuilder.toString());
+                numberStack.push(num);
+            } else if (c == '(') {
+                operatorStack.push(c);
+            } else if (c == ')') {
+                while (!operatorStack.isEmpty() && operatorStack.peek() != '(') {
+                    performOperation(numberStack, operatorStack);
                 }
-                operators.push(element);
-            } else {
-                numbers.push(Double.parseDouble(element));
+                operatorStack.pop(); // Pop the '('
+            } else if (isOperator(c)) {
+                while (!operatorStack.isEmpty() && precedence(operatorStack.peek()) >= precedence(c)) {
+                    performOperation(numberStack, operatorStack);
+                }
+                operatorStack.push(c);
             }
         }
-        
-        while (!operators.isEmpty()) {
-            applyOperator(numbers, operators.pop());
+
+        while (!operatorStack.isEmpty()) {
+            performOperation(numberStack, operatorStack);
         }
 
-        return numbers.pop();
+        return numberStack.pop();
     }
 
-    private static boolean isOperator(String token) {
-        return token.equals("+") || token.equals("-") || token.equals("*") || token.equals("/");
+    private void performOperation(Stack<Double> numberStack, Stack<Character> operatorStack) {
+        char operator = operatorStack.pop();
+        double operand2 = numberStack.pop();
+        double operand1 = numberStack.pop();
+        double result = applyOperator(operand1, operand2, operator);
+        numberStack.push(result);
     }
 
-    private static boolean hasPrecedence(String op1, String op2) {
-        return (op1.equals("*") || op1.equals("/")) && (op2.equals("+") || op2.equals("-"));
-    }
-
-    private static void applyOperator(Stack<Double> numbers, String operator) {
-        double operand2 = numbers.pop();
-        double operand1 = numbers.pop();
+    private double applyOperator(double operand1, double operand2, char operator) {
         switch (operator) {
-            case "+":
-                numbers.push(operand1 + operand2);
-                break;
-            case "-":
-                numbers.push(operand1 - operand2);
-                break;
-            case "*":
-                numbers.push(operand1 * operand2);
-                break;
-            case "/":
-                numbers.push(operand1 / operand2);
-                break;
+            case '+':
+                return operand1 + operand2;
+            case '-':
+                return operand1 - operand2;
+            case '*':
+                return operand1 * operand2;
+            case '/':
+                return operand1 / operand2;
+            default:
+                throw new IllegalArgumentException("Invalid operator: " + operator);
         }
+    }
+
+    private boolean isOperator(char c) {
+        return c == '+' || c == '-' || c == '*' || c == '/';
+    }
+
+    private int precedence(char operator) {
+        if (operator == '+' || operator == '-') {
+            return 1;
+        } else if (operator == '*' || operator == '/') {
+            return 2;
+        }
+        return 0; // Default precedence for non-operators
     }
 }
