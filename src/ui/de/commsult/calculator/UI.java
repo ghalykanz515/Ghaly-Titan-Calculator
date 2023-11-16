@@ -82,6 +82,7 @@ public class UI {
         panel.setLayout(null);
         panel.setVisible(true);
   		
+        //Button for Number 0
         JButton Number0 = new JButton("0");
   		Number0.addActionListener(new ActionListener() {
   			public void actionPerformed(ActionEvent e) {
@@ -92,6 +93,7 @@ public class UI {
   		Number0.setBounds(111, 304, 100, 65);
   		panel.add(Number0);
         
+  		//Button for Number 1
   		JButton Number1 = new JButton("1");
   		Number1.addActionListener(new ActionListener() {
   			public void actionPerformed(ActionEvent e) {
@@ -102,6 +104,7 @@ public class UI {
   		Number1.setBounds(0, 228, 100, 65);
   		panel.add(Number1);
   		
+  		//Button for Number 2  		
   		JButton Number2 = new JButton("2");
   		Number2.addActionListener(new ActionListener() {
   			public void actionPerformed(ActionEvent e) {
@@ -112,6 +115,7 @@ public class UI {
   		Number2.setBounds(110, 228, 100, 65);
   		panel.add(Number2);
   		
+  		//Button for Number 3
   		JButton Number3 = new JButton("3");
   		Number3.addActionListener(new ActionListener() {
   			public void actionPerformed(ActionEvent e) {
@@ -121,7 +125,8 @@ public class UI {
   		});
   		Number3.setBounds(220, 228, 100, 65);
   		panel.add(Number3);
-  		
+  		  		
+  		//Button for Number 4
   		JButton Number4 = new JButton("4");
   		Number4.addActionListener(new ActionListener() {
   			public void actionPerformed(ActionEvent e) {
@@ -132,6 +137,7 @@ public class UI {
   		Number4.setBounds(0, 152, 100, 65);
   		panel.add(Number4);
   		
+  		//Button for Number 5
   		JButton Number5 = new JButton("5");
   		Number5.addActionListener(new ActionListener() {
   			public void actionPerformed(ActionEvent e) {
@@ -142,6 +148,7 @@ public class UI {
   		Number5.setBounds(111, 152, 100, 65);
   		panel.add(Number5);
   		
+  		//Button for Number 6
   		JButton Number6 = new JButton("6");
   		Number6.addActionListener(new ActionListener() {
   			public void actionPerformed(ActionEvent e) {
@@ -152,6 +159,7 @@ public class UI {
   		Number6.setBounds(221, 152, 100, 65);
   		panel.add(Number6);
   		
+  		//Button for Number 7 		
   		JButton Number7 = new JButton("7");
   		Number7.addActionListener(new ActionListener() {
   			public void actionPerformed(ActionEvent e) {
@@ -162,6 +170,7 @@ public class UI {
   		Number7.setBounds(0, 76, 100, 65);
   		panel.add(Number7);
   		
+  		//Button for Number 8
   		JButton Number8 = new JButton("8");
   		Number8.addActionListener(new ActionListener() {
   			public void actionPerformed(ActionEvent e) {
@@ -172,6 +181,7 @@ public class UI {
   		Number8.setBounds(110, 76, 100, 65);
   		panel.add(Number8);
   		
+  		//Button for Number 9
   		JButton Number9 = new JButton("9");
   		Number9.addActionListener(new ActionListener() {
   			public void actionPerformed(ActionEvent e) {
@@ -182,6 +192,7 @@ public class UI {
   		Number9.setBounds(220, 76, 100, 65);
   		panel.add(Number9);
   		
+  		//Button for Plus/Increment Function
   		JButton Increment = new JButton("+");
   		Increment.addActionListener(new ActionListener() {
   			public void actionPerformed(ActionEvent e) {
@@ -189,9 +200,10 @@ public class UI {
   				textField.setText(number);
   			}
   		});
-  		Increment.setBounds(330, 228, 100, 65);
+  		Increment.setBounds(331, 152, 100, 65);
   		panel.add(Increment);
   		
+  		//Button for Subtraction Function
   		JButton Subtract = new JButton("-");
   		Subtract.addActionListener(new ActionListener() {
   			public void actionPerformed(ActionEvent e) {
@@ -199,19 +211,21 @@ public class UI {
   				textField.setText(number);
   			}
   		});
-  		Subtract.setBounds(330, 152, 100, 65);
+  		Subtract.setBounds(330, 76, 100, 65);
   		panel.add(Subtract);
   		
-  		JButton Divide = new JButton("%");
+  		//Button for Division Function
+  		JButton Divide = new JButton("/");
   		Divide.addActionListener(new ActionListener() {
   			public void actionPerformed(ActionEvent e) {
   				String number=textField.getText()+Divide.getText();
   				textField.setText(number);
   			}
   		});
-  		Divide.setBounds(330, 0, 100, 65);
+  		Divide.setBounds(220, 0, 100, 65);
   		panel.add(Divide);
-  		
+  				
+  		//Button for Times Function
   		JButton Times = new JButton("X");
   		Times.addActionListener(new ActionListener() {
   			public void actionPerformed(ActionEvent e) {
@@ -219,23 +233,10 @@ public class UI {
   				textField.setText(number);
   			}
   		});
-  		Times.setBounds(331, 76, 100, 65);
+  		Times.setBounds(330, 0, 100, 65);
   		panel.add(Times);;
   		
-  		JButton NegativePositive = new JButton("-/+");
-  		NegativePositive.setBounds(1, 304, 100, 65);
-  		panel.add(NegativePositive);
-      		
-  		JButton Dot = new JButton(".");
-  		Dot.addActionListener(new ActionListener() {
-  			public void actionPerformed(ActionEvent e) {
-  				String number=textField.getText()+Dot.getText();
-  				textField.setText(number);
-  			}
-  		});
-  		Dot.setBounds(221, 304, 100, 65);
-  		panel.add(Dot);
-        
+  		//Button for Deleting/Backspace        
   		JButton Delete = new JButton("<");
   		Delete.addActionListener(new ActionListener() {
   			public void actionPerformed(ActionEvent arg0) {
@@ -252,6 +253,7 @@ public class UI {
         Delete.setBounds(0, 0, 100, 65);
         panel.add(Delete);
         
+        //Button for Clear All, clearing the textField
         JButton CE = new JButton("CE");
         CE.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
@@ -261,13 +263,42 @@ public class UI {
         CE.setBounds(111, 0, 100, 65);
         panel.add(CE);
         
-        JButton CC = new JButton("CC");
-        CC.setBounds(220, 0, 100, 65);
-        panel.add(CC);
+        //Button for Dots, for creating decimals
+        JButton Dot = new JButton(".");
+  		Dot.addActionListener(new ActionListener() {
+  			public void actionPerformed(ActionEvent e) {
+  				String number=textField.getText()+Dot.getText();
+  				textField.setText(number);
+  			}
+  		});
+  		Dot.setBounds(0, 304, 100, 65);
+  		panel.add(Dot);
+        
+  		//Button for Open Parentheses
+        JButton OpenP = new JButton("(");
+  		OpenP.addActionListener(new ActionListener() {
+  			public void actionPerformed(ActionEvent e) {
+  				String number=textField.getText()+OpenP.getText();
+  				textField.setText(number);
+  			}
+  		});
+  		OpenP.setBounds(220, 304, 100, 65);
+  		panel.add(OpenP);
+  		
+        //Button for Close Parentheses
+        JButton CloseP = new JButton(")");
+        CloseP.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		String number=textField.getText()+CloseP.getText();
+  				textField.setText(number);
+        	}
+        });
+        CloseP.setBounds(331, 304, 100, 65);
+        panel.add(CloseP);
           		
   		//The Equals Button also serves as a function to Collapse the Buttons
   		JButton equals = new JButton("=");
-        equals.setBounds(331, 304, 100, 65);
+        equals.setBounds(330, 228, 100, 65);
         panel.add(equals);
         equals.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -317,8 +348,7 @@ public class UI {
         //This is a Loader for Custom Fonts
         try {
             Font customFont = Font.createFont(Font.TRUETYPE_FONT, getClass().getResourceAsStream("PublicPixel.ttf")).deriveFont(20f);
-
-            // Set the font for specific components
+            // Setting the font for specific components
             dropDown.setFont(customFont);
             textField.setFont(customFont);
             Number0.setFont(customFont);
@@ -335,11 +365,11 @@ public class UI {
             Subtract.setFont(customFont);
             Divide.setFont(customFont);
             Times.setFont(customFont);
-            NegativePositive.setFont(customFont);
+            OpenP.setFont(customFont);
             Dot.setFont(customFont);
             Delete.setFont(customFont);
             CE.setFont(customFont);
-            CC.setFont(customFont);
+            CloseP.setFont(customFont);
             equals.setFont(customFont);
         } catch (Exception e) {
             e.printStackTrace();
