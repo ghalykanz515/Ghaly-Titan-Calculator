@@ -14,6 +14,7 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
+import java.awt.Color;
 
 
 
@@ -49,6 +50,7 @@ public class UI {
         }
 
         frmCalculator = new JFrame();
+        frmCalculator.getContentPane().setBackground(new Color(0, 0, 0));
         frmCalculator.getContentPane().setFont(new Font("Tahoma", Font.BOLD, 20));
         frmCalculator.setTitle("Calculator");
         frmCalculator.setBounds(100, 100, 465, 585);
@@ -57,6 +59,7 @@ public class UI {
         
         //This button serves as the function to collapse the Calculator Buttons
         JToggleButton dropDown = new JToggleButton("Collapse");
+        dropDown.setBackground(new Color(128, 128, 128));
         dropDown.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (dropDown.isSelected()) {
@@ -72,6 +75,8 @@ public class UI {
         
         //TextField is where the Results and Numbers are going to be
         textField = new JTextField();
+        textField.setForeground(new Color(255, 255, 255));
+        textField.setBackground(new Color(128, 128, 128));
         textField.setFont(new Font("Tahoma", Font.BOLD, 20));
         textField.setHorizontalAlignment(SwingConstants.CENTER);
         textField.setColumns(10);
@@ -79,11 +84,14 @@ public class UI {
         
         //Panel Contains all the buttons to make the Calculator
         panel = new JPanel();
+        panel.setBackground(new Color(0, 0, 0));
         panel.setLayout(null);
         panel.setVisible(true);
   		
         //Button for Number 0
         JButton Number0 = new JButton("0");
+        Number0.setBackground(new Color(128, 128, 128));
+        Number0.setForeground(new Color(0, 0, 0));
   		Number0.addActionListener(new ActionListener() {
   			public void actionPerformed(ActionEvent e) {
   				String number=textField.getText()+Number0.getText();
@@ -95,6 +103,8 @@ public class UI {
         
   		//Button for Number 1
   		JButton Number1 = new JButton("1");
+  		Number1.setBackground(new Color(128, 128, 128));
+  		Number1.setForeground(new Color(0, 0, 0));
   		Number1.addActionListener(new ActionListener() {
   			public void actionPerformed(ActionEvent e) {
   				String number=textField.getText()+Number1.getText();
@@ -106,6 +116,8 @@ public class UI {
   		
   		//Button for Number 2  		
   		JButton Number2 = new JButton("2");
+  		Number2.setBackground(new Color(128, 128, 128));
+  		Number2.setForeground(new Color(0, 0, 0));
   		Number2.addActionListener(new ActionListener() {
   			public void actionPerformed(ActionEvent e) {
   				String number=textField.getText()+Number2.getText();
@@ -117,6 +129,8 @@ public class UI {
   		
   		//Button for Number 3
   		JButton Number3 = new JButton("3");
+  		Number3.setBackground(new Color(128, 128, 128));
+  		Number3.setForeground(new Color(0, 0, 0));
   		Number3.addActionListener(new ActionListener() {
   			public void actionPerformed(ActionEvent e) {
   				String number=textField.getText()+Number3.getText();
@@ -128,6 +142,8 @@ public class UI {
   		  		
   		//Button for Number 4
   		JButton Number4 = new JButton("4");
+  		Number4.setBackground(new Color(128, 128, 128));
+  		Number4.setForeground(new Color(0, 0, 0));
   		Number4.addActionListener(new ActionListener() {
   			public void actionPerformed(ActionEvent e) {
   				String number=textField.getText()+Number4.getText();
@@ -139,6 +155,8 @@ public class UI {
   		
   		//Button for Number 5
   		JButton Number5 = new JButton("5");
+  		Number5.setBackground(new Color(128, 128, 128));
+  		Number5.setForeground(new Color(0, 0, 0));
   		Number5.addActionListener(new ActionListener() {
   			public void actionPerformed(ActionEvent e) {
   				String number=textField.getText()+Number5.getText();
@@ -150,6 +168,8 @@ public class UI {
   		
   		//Button for Number 6
   		JButton Number6 = new JButton("6");
+  		Number6.setBackground(new Color(128, 128, 128));
+  		Number6.setForeground(new Color(0, 0, 0));
   		Number6.addActionListener(new ActionListener() {
   			public void actionPerformed(ActionEvent e) {
   				String number=textField.getText()+Number6.getText();
@@ -161,6 +181,8 @@ public class UI {
   		
   		//Button for Number 7 		
   		JButton Number7 = new JButton("7");
+  		Number7.setBackground(new Color(128, 128, 128));
+  		Number7.setForeground(new Color(0, 0, 0));
   		Number7.addActionListener(new ActionListener() {
   			public void actionPerformed(ActionEvent e) {
   				String number=textField.getText()+Number7.getText();
@@ -172,6 +194,8 @@ public class UI {
   		
   		//Button for Number 8
   		JButton Number8 = new JButton("8");
+  		Number8.setBackground(new Color(128, 128, 128));
+  		Number8.setForeground(new Color(0, 0, 0));
   		Number8.addActionListener(new ActionListener() {
   			public void actionPerformed(ActionEvent e) {
   				String number=textField.getText()+Number8.getText();
@@ -183,6 +207,8 @@ public class UI {
   		
   		//Button for Number 9
   		JButton Number9 = new JButton("9");
+  		Number9.setBackground(new Color(128, 128, 128));
+  		Number9.setForeground(new Color(0, 0, 0));
   		Number9.addActionListener(new ActionListener() {
   			public void actionPerformed(ActionEvent e) {
   				String number=textField.getText()+Number9.getText();
@@ -194,6 +220,8 @@ public class UI {
   		
   		//Button for Plus/Increment Function
   		JButton Increment = new JButton("+");
+  		Increment.setBackground(new Color(128, 128, 128));
+  		Increment.setForeground(new Color(0, 0, 0));
   		Increment.addActionListener(new ActionListener() {
   			public void actionPerformed(ActionEvent e) {
   				String number=textField.getText()+Increment.getText();
@@ -205,6 +233,8 @@ public class UI {
   		
   		//Button for Subtraction Function
   		JButton Subtract = new JButton("-");
+  		Subtract.setBackground(new Color(128, 128, 128));
+  		Subtract.setForeground(new Color(0, 0, 0));
   		Subtract.addActionListener(new ActionListener() {
   			public void actionPerformed(ActionEvent e) {
   				String number=textField.getText()+Subtract.getText();
@@ -216,6 +246,8 @@ public class UI {
   		
   		//Button for Division Function
   		JButton Divide = new JButton("/");
+  		Divide.setBackground(new Color(128, 128, 128));
+  		Divide.setForeground(new Color(0, 0, 0));
   		Divide.addActionListener(new ActionListener() {
   			public void actionPerformed(ActionEvent e) {
   				String number=textField.getText()+Divide.getText();
@@ -227,6 +259,8 @@ public class UI {
   				
   		//Button for Times Function
   		JButton Times = new JButton("X");
+  		Times.setBackground(new Color(128, 128, 128));
+  		Times.setForeground(new Color(0, 0, 0));
   		Times.addActionListener(new ActionListener() {
   			public void actionPerformed(ActionEvent e) {
   				String number=textField.getText()+Times.getText();
@@ -238,6 +272,8 @@ public class UI {
   		
   		//Button for Deleting/Backspace        
   		JButton Delete = new JButton("<");
+  		Delete.setBackground(new Color(128, 128, 128));
+  		Delete.setForeground(new Color(0, 0, 0));
   		Delete.addActionListener(new ActionListener() {
   			public void actionPerformed(ActionEvent arg0) {
   				String Delete=(null);
@@ -255,6 +291,8 @@ public class UI {
         
         //Button for Clear All, clearing the textField
         JButton CE = new JButton("CE");
+        CE.setBackground(new Color(128, 128, 128));
+        CE.setForeground(new Color(0, 0, 0));
         CE.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		textField.setText(null);
@@ -265,6 +303,8 @@ public class UI {
         
         //Button for Dots, for creating decimals
         JButton Dot = new JButton(".");
+        Dot.setBackground(new Color(128, 128, 128));
+        Dot.setForeground(new Color(0, 0, 0));
   		Dot.addActionListener(new ActionListener() {
   			public void actionPerformed(ActionEvent e) {
   				String number=textField.getText()+Dot.getText();
@@ -276,6 +316,8 @@ public class UI {
         
   		//Button for Open Parentheses
         JButton OpenP = new JButton("(");
+        OpenP.setBackground(new Color(128, 128, 128));
+        OpenP.setForeground(new Color(0, 0, 0));
   		OpenP.addActionListener(new ActionListener() {
   			public void actionPerformed(ActionEvent e) {
   				String number=textField.getText()+OpenP.getText();
@@ -287,6 +329,8 @@ public class UI {
   		
         //Button for Close Parentheses
         JButton CloseP = new JButton(")");
+        CloseP.setBackground(new Color(128, 128, 128));
+        CloseP.setForeground(new Color(0, 0, 0));
         CloseP.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		String number=textField.getText()+CloseP.getText();
@@ -298,6 +342,8 @@ public class UI {
           		
   		//The Equals Button also serves as a function to Collapse the Buttons
   		JButton equals = new JButton("=");
+  		equals.setBackground(new Color(128, 128, 128));
+  		equals.setForeground(new Color(0, 0, 0));
         equals.setBounds(330, 228, 100, 65);
         panel.add(equals);
         equals.addActionListener(new ActionListener() {
