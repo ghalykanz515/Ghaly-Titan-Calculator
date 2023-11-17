@@ -268,7 +268,7 @@ public class UI {
   		Times.setForeground(new Color(0, 0, 0));
   		Times.addActionListener(new ActionListener() {
   			public void actionPerformed(ActionEvent e) {
-  				String number=textField.getText()+Times.getText();
+  				String number=textField.getText()+ "*";
   				textField.setText(number);
   			}
   		});
