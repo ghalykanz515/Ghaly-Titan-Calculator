@@ -1,93 +1,93 @@
 package de.commsult.calculator;
-import java.util.*;
+
+import java.util.Stack;
 
 public class CalculatorImpl implements Calculator {
 
-	public double calculate(String formula) {
-        String[] elements = formula.split("\\s+");
-        Stack<Double> numbers = new Stack<>();
-        Stack<String> operators = new Stack<>();
+	@Override
+    public double calculate(String formula) {
+        Stack<Double> numberStack = new Stack<>();
+        Stack<Character> operatorStack = new Stack<>();
+        StringBuilder numBuilder = new StringBuilder();
+        boolean wasToken = true;
 
-        for (String element : elements) {
-            if (element.equals("(")) {
-                operators.push(element);
-            } else if (element.equals(")")) {
-                while (!operators.isEmpty() && !operators.peek().equals("(")) {
-                    applyOperator(numbers, operators.pop());
-                }
-                operators.pop();
-            } else if (isOperator(element)) {
-                while (!operators.isEmpty() && hasPrecedence(element, operators.peek())) {
-                    applyOperator(numbers, operators.pop());
-                }
-                operators.push(element);
-            } else {
-                numbers.push(Double.parseDouble(element));
+        for (int i = 0; i < formula.length(); i++) {
+            char c = formula.charAt(i);
+
+            if (c ==  ' ') {
+                continue;
             }
+
+            if (c == '-' && wasToken) {
+                numBuilder.append(c);
+            } else if (Character.isDigit(c) || c == '.') {
+                while (i < formula.length() && (Character.isDigit(formula.charAt(i)) || formula.charAt(i) == '.')) {
+                    numBuilder.append(formula.charAt(i));
+                    i++;
+                }
+                i--;
+                double num = Double.parseDouble(numBuilder.toString());
+                numberStack.push(num);
+                numBuilder.setLength(0);
+            } else if (isOperator(c)) {
+                while (!operatorStack.isEmpty() && precedence(operatorStack.peek()) >= precedence(c)) {
+                    performOperation(numberStack, operatorStack);
+                }
+                operatorStack.push(c);
+            } else if (c == '(') {
+                operatorStack.push(c);
+            } else if (c == ')') {
+                while (!operatorStack.isEmpty() && operatorStack.peek() != '(') {
+                    performOperation(numberStack, operatorStack);
+                }
+                operatorStack.pop();
+            }
+            wasToken = isOperator(c) || c == '(';
         }
 
-        while (!operators.isEmpty()) {
-            applyOperator(numbers, operators.pop());
+        while (!operatorStack.isEmpty()) {
+            performOperation(numberStack, operatorStack);
         }
 
-        return numbers.pop();
+        return numberStack.pop();
     }
 
-    private boolean isOperator(String token) {
-        return token.equals("+") || token.equals("-") || token.equals("*") || token.equals("/");
+    private void performOperation(Stack<Double> numberStack, Stack<Character> operatorStack) {
+        char operator = operatorStack.pop();
+        double operand2 = numberStack.pop();
+        double operand1 = numberStack.pop();
+        double result = applyOperator(operand1, operand2, operator);
+        numberStack.push(result);
     }
 
-    private boolean hasPrecedence(String op1, String op2) {
-        return (op1.equals("*") || op1.equals("/")) || (op2.equals("+") || op2.equals("-"));
-    }
-
-    private static void applyOperator(Stack<Double> numbers, String operator) {
-        double operand2 = numbers.pop();
-        double operand1 = numbers.pop();
+    private double applyOperator(double operand1, double operand2, char operator) {
         switch (operator) {
-            case "+":
-                numbers.push(operand1 + operand2);
-                break;
-            case "-":
-                numbers.push(operand1 - operand2);
-                break;
-            case "*":
-                numbers.push(operand1 * operand2);
-                break;
-            case "/":
-                numbers.push(operand1 / operand2);
-                break;
+            case '+':
+                return operand1 + operand2;
+            case '-':
+                return operand1 - operand2;
+            case '*':
+                return operand1 * operand2;
+            case '/':
+                if (operand2 == 0) {
+                    throw new ArithmeticException("Division by zero");
+                }
+                return operand1 / operand2;
+            default:
+                throw new IllegalArgumentException("Invalid operator: " + operator);
         }
     }
-    
-	/* @Override
-	public double calculate(String formula) {
-        String[] elements = formula.split("\\s+");
-		
-		double result = Double.parseDouble(elements[0]);
-		
-		for(int i = 1; i < elements.length; i += 2) 
-		{
-			String operator = elements[i];
-			double operand = Double.parseDouble(elements[i + 1]);
-			
-			switch(operator) {
-			case "+":
-				result += operand;
-				break;
-				
-			case "-":
-				result -= operand;
-				break;
-				
-			case "*":
-				result *= operand;
-				
-			case "/":
-				result /= operand;
-			}
-		}
-		
-		return 0; 
-	} */
+
+    private boolean isOperator(char c) {
+        return c == '+' || c == '-' || c == '*' || c == '/';
+    }
+
+    private int precedence(char operator) {
+        if (operator == '+' || operator == '-') {
+            return 1;
+        } else if (operator == '*' || operator == '/') {
+            return 2;
+        }
+        return 0;
+    }
 }
